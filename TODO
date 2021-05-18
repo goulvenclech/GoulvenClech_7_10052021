@@ -1,0 +1,47 @@
+ALGO PLUSIEURS BOUCLES :
+
+=> DATA
+
+EventListener
+-> Sur la barre de recherche
+-> Sur les trois menus
+
+Fonction de recherches : 
+-> Check appareil
+-> Check ustensiles
+-> Check ingrédients
+-> Check les mots clés
+
+=> Liste des recettes
+
+Fonction de résultats : 
+-> Retourne les ustensiles restants dans ces recettes
+-> Retourne les appareils restants dans ces recettes
+-> Retourne les ingrédients restants dans ces recettes
+-> Retourne les recettes
+
+========================
+
+ALGO -> Une boucle ?
+
+ALGO -> Pré-traitement
+
+ALGO -> 
+
+function(objet) {
+    logique
+    return objet
+}
+
+Requete => Recipes
+|> 
+|> 
+|> 
+|> 
+=> Résultat
+
+========================
+
+ALGO -> une boucle - info
+
+AlGO -> pré-traitement + plusieurs boucles + idée
