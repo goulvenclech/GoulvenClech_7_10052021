@@ -1,8 +1,12 @@
-# Les Petits Plats
+# Les Petits Plats (WIP)
 
 Les Petits Plats est un moteur de recherche qui permet de trouver rapidement des recettes adaptées aux ingrédients et aux ustensiles que vous avez sous la main. Projet 7 de la formation OpenClassrooms "Développeur Front End".
 
-Le projet est actuellement à peine commencé.
+L'application consiste en une page simple, réalisée avec Javascript (vanilla) dans un paradigme [Orientée Prototype](https://en.wikipedia.org/wiki/Prototype-based_programming) en utilisant des [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components). Sur cette page un moteur de recherche permet de chercher dans une database de 50 recettes (représentée par un fichier JSON) soit via des mots clés (qui vont matcher avec le nom, la description ou la liste d'ingrédient des recettes) soit via un sélecteur d'ingrédients, d'ustensils ou d'appareils.
+
+Coté "backend", cette recherche peux être en fait deux algorithmes différents, les deux étant dans tout les cas dans `research.js`, réalisés avec Javascript (vanilla) dans un paradigme [Fonctionnel](https://en.wikipedia.org/wiki/Functional_programming). Le second algorithme se caractérise notamment par un pré-traitement de la DB, plusieurs dictionnaires sont ainsi réalisés à partir du JSON, ne comportant que les données utiles pour la recherche, permettant ainsi un traitement plus simple et plus rapide.
+
+Enfin, un effort particulier a été mis sur la documentation : j'utilise [JSDoc 3](https://jsdoc.app/) dont l'utilisation est facilité par le paradigme fonctionnel, ainsi que [???] pour les schémas illustrants les algorithmes.
 
 Adresse du répo : https://github.com/GoulvenC/GoulvenClech_7_10052021
 
@@ -26,7 +30,27 @@ Le projet Les Petits Plats est une projet d'application web entièrement dévelo
 
 ## Organisation du projet
 
-*[Work in progress]*
+`assets/` :
+* `data/`, contient les données en JSON qui hydrate l'application
+* `style/`, contient `main.css` où sont définis les styles CSS de bases
+
+`pages/` :
+* contient `index.js` qui est la seule page de l'application
+* `components/`, contient les différents composants JavaScript utilisés dans `index.js`
+
+`app.js`, point de départ de l'application, importe les dépendances et tout les composants
+
+`index.html`, chargé par le navigateur quand l'utilisateur arrive sur le site, appelle `app.js`
+
+`research.js`, contient toute la logique algorithme du moteur de recherche 
+
+`package.json` & `yarn.lock`, fichiers utilisés par Yarn pour gérer les dépendances
+
+`postcss.config.js`, fichier de configuration pour les plugins POSTCSS
+
+`README.md` & `SCHEMAALGO1.png` & `SCHEMAALGO2.png`, le fichier que vous lisez actuellement
+
+`tailwin.config.js`, fichier de configuration pour Tailwind, contient notamment la font et les couleurs personalisées du projet
 
 ## Architectures des algos
 
