@@ -16,11 +16,14 @@ import data from "./assets/data/data.json"
  * @returns {array} - array of objects (corresponding recipes)
  */
 export function research(request, appliance, ustensil) {
-    return data.recipes.filter(recipe => 
+    console.time(research);
+    let result = data.recipes.filter(recipe => 
         matchAppliance(recipe, appliance) 
         && matchUstensils(recipe, ustensil) 
         && ( matchName(recipe, request) || matchDescriptions(recipe, request) || matchIngredients(recipe, request))
     );
+    console.timeEnd(research);
+    return result;
 }
 
 /**
