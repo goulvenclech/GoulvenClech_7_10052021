@@ -15,11 +15,15 @@ import data from "./assets/data/data.json"
  * @param {string} ustensil - value of the ustensil <select>
  * @returns {array} - array of objects (corresponding recipes)
  */
-export function research(request, appliance, ustensil) {
+ export function research(request, appliance, ustensil) {
     console.time(research);
-    let result = data.recipes.filter(recipe => 
-        matchAppliance(recipe, appliance) 
-        && matchUstensils(recipe, ustensil) 
+    // Work in progress :
+    // The ingredients array will comes as an param of research()
+    let ingredients = ["Jus de citron", "Crème de coco"];
+    let result = data.recipes.filter(recipe =>
+        matchAppliance(recipe, appliance)
+        && matchUstensils(recipe, ustensil)
+        && matchTagsIngredients(recipe, ingredients)
         && ( matchName(recipe, request) || matchDescriptions(recipe, request) || matchIngredients(recipe, request))
     );
     console.timeEnd(research);
@@ -44,6 +48,18 @@ function matchAppliance(recipe, appliance) {
  */
 function matchUstensils(recipe, ustensil) {
     return recipe.ustensils.filter(recipeUstensil => recipeUstensil.toLowerCase().includes(ustensil.toLowerCase())).length > 0;
+}
+
+/**
+ * Check if a recipe match with the all the tagged ingredients
+ * @param {object} recipe - recipe currently looked
+ * @param {array} ingredients 
+ * @returns {boolean} - true if match
+ */
+ function matchTagsIngredients(recipe, ingredients) {
+    let recipeIngredients = [];
+    recipe.ingredients.forEach(ingredient => recipeIngredients.push(ingredient.ingredient))
+    return ingredients.every(ing => recipeIngredients.includes(ing));
 }
 
 /**
