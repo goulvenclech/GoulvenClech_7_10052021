@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 input:focus ~ ul {
-    @apply w-96 h-auto;
+    @apply w-96 lg:w-144 h-auto;
 }
 
 input:focus + label {

@@ -4,6 +4,7 @@
  export class SearchResult extends HTMLElement {
     constructor() {
         super();
+        this.results = research("", "", "");
     } 
     
     /**
@@ -12,11 +13,28 @@
     connectedCallback () {
         const template = document.createElement('template');
         template.innerHTML = `
-            <ul>
-            </ul>
+            <section class="grid grid-cols-3 gap-4">
+            </section>
       `;
         this.appendChild(template.content);
+        this.render();
         this.listeners();
+    }
+
+    render() {
+        this.results.forEach(recipe => {
+            this.querySelector("section").insertAdjacentHTML('afterBegin', `
+            <article class="bg-gray-400 p-4 h-44 overflow-hidden overflow-ellipsis
+                        rounded-md">
+                <h3 class="font-bold">`
+                    + recipe.name  +
+                `<h3>
+                <p>`
+                    + recipe.description +
+                `</p>
+            </article>
+            `)
+        })
     }
 
     /**
@@ -25,7 +43,11 @@
      */
     listeners() {
         document.querySelector("input").addEventListener('input', input => {
-            this.querySearch(input.target.value);
+            if(input.target.value.length > 2) {
+                this.querySearch(input.target.value);
+            }else {
+                this.querySearch("");
+            }
         })
         document.querySelector(".appliance").addEventListener('change', () => {
             this.querySearch(document.querySelector("input").value);
@@ -40,22 +62,14 @@
      * @param {string} request - the search typed by the user in the search bar
      */
      querySearch(request) {
-        if(request.length >= 3) {
-            // clean old results
-            this.querySelectorAll("li").forEach(element => {element.remove()})
-            // get the menus values
-            let appliance = document.querySelector(".appliance").value;
-            let ustensil = document.querySelector(".ustensils").value;
-            // make a new search, then display all the result's recipes
-            research(request, appliance, ustensil).forEach(recipe => {
-                this.querySelector("ul").insertAdjacentHTML('afterBegin', `
-                <li class="list-disc ml-5">`+ recipe.name  +`</li>
-                `)
-            })
-        }else {
-            // clean old results
-            this.querySelectorAll("li").forEach(element => {element.remove()});
-        }
+        // clean old results
+        this.querySelectorAll("article").forEach(element => {element.remove()})
+        // get the menus values
+        let appliance = document.querySelector(".appliance").value;
+        let ustensil = document.querySelector(".ustensils").value;
+        // make a new search, then display all the result's recipes
+        this.results = research(request, appliance, ustensil)
+        this.render()
     }
 }
 

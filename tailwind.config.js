@@ -4,7 +4,14 @@ module.exports = {
   purge: ["./*.js", "./pages/*.js", "./pages/**/*.js"],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      width: {
+        144: '36rem'
+      },
+      transitionProperty: {
+        'width': 'width'
+      },
+    },
   },
   variants: {
     extend: {},

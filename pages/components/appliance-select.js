@@ -12,7 +12,7 @@
     connectedCallback () {
         const template = document.createElement('template');
         template.innerHTML = `
-            <select type="text" class="appliance bg-white border border-gray-500 border-1 my-4 p-2 rounded-sm">
+            <select type="text" class="appliance bg-white border border-gray-500 border-1 my-4 p-2 rounded-md">
                 <option value="">-- Appareils --</option>
             </select>
       `;
