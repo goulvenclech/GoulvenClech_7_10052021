@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input:focus ~ ul {
+    @apply w-96 h-auto;
+}
+
+input:focus + label {
+    @apply hidden;
+}
+
+input {
+        @apply align-middle p-2;
+    }
+
+@layer base {
+    input {
+        @apply align-middle p-2;
+    }
+}

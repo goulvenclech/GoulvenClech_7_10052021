@@ -19,7 +19,7 @@ import data from "./assets/data/data.json"
     console.time(research);
     // Work in progress :
     // The ingredients array will comes as an param of research()
-    let ingredients = ["Jus de citron", "Crème de coco"];
+    let ingredients = [];
     let result = data.recipes.filter(recipe =>
         matchAppliance(recipe, appliance)
         && matchUstensils(recipe, ustensil)

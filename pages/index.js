@@ -19,6 +19,7 @@
                 <p>Ca va faire de l'algo ici...</p>
                 <search-bar></search-bar>
                 <section class="flex gap-8">
+                    <ingredients-select></ingredients-select>
                     <appliance-select></appliance-select>
                     <ustensil-select></ustensil-select>
                 </section>

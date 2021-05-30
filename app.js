@@ -1,5 +1,6 @@
 // import dependencies
 import "tailwindcss/tailwind.css"
+import "./assets/style/main.css"
 
 // import pages
 import {IndexPage} from "./pages/index.js"
@@ -7,6 +8,8 @@ window.customElements.define("index-page", IndexPage);
 // import all the components
 import {ApplianceSelect} from "./pages/components/appliance-select.js"
 window.customElements.define("appliance-select", ApplianceSelect);
+import {IngredientsSelect} from "./pages/components/ingredients-select.js"
+window.customElements.define("ingredients-select", IngredientsSelect);
 import {SearchBar} from "./pages/components/search-bar.js"
 window.customElements.define("search-bar", SearchBar);
 import {SearchResult} from "./pages/components/search-result.js"
