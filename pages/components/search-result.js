@@ -13,7 +13,7 @@
     connectedCallback () {
         const template = document.createElement('template');
         template.innerHTML = `
-            <section class="grid grid-cols-3 gap-4">
+            <section class="grid grid-cols-2 lg:grid-cols-3 gap-4">
             </section>
       `;
         this.appendChild(template.content);

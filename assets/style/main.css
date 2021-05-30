@@ -2,20 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    input {
+        @apply align-middle p-4;
+    }
+}
+
+/**
+ *  ingredients-select.js
+ */
 input:focus ~ ul {
-    @apply w-96 lg:w-144 h-auto;
+    @apply w-96 lg:w-144 h-250 overflow-hidden;
+}
+
+input:focus ~ ul.search {
+    @apply h-auto;
 }
 
 input:focus + label {
     @apply hidden;
-}
-
-input {
-        @apply align-middle p-2;
-    }
-
-@layer base {
-    input {
-        @apply align-middle p-2;
-    }
 }
