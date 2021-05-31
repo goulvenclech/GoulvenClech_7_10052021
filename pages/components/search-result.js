@@ -49,11 +49,12 @@
                 this.querySearch("");
             }
         })
-        document.querySelector(".appliance").addEventListener('change', () => {
-            this.querySearch(document.querySelector("input").value);
-        })
-        document.querySelector(".ustensils").addEventListener('change', () => {
-            this.querySearch(document.querySelector("input").value);
+        document.querySelectorAll("ul.ingredients li").forEach(ingredient => {
+            console.log(ingredient.innerHTML)
+            ingredient.addEventListener('click', event => {
+                event.stopPropagation();
+                console.log(event.target.innerHTML);
+            }) 
         })
     }
 
@@ -65,8 +66,8 @@
         // clean old results
         this.querySelectorAll("article").forEach(element => {element.remove()})
         // get the menus values
-        let appliance = document.querySelector(".appliance").value;
-        let ustensil = document.querySelector(".ustensils").value;
+        let appliance = "";
+        let ustensil = "";
         // make a new search, then display all the result's recipes
         this.results = research(request, appliance, ustensil)
         this.render()

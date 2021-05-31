@@ -15,13 +15,13 @@
         template.innerHTML = `
             <div class="relative my-4">
                 <input type="text" placeholder="Rechercher un ingrédient..."
-                    class="placeholder bg-blue-500 text-transparent placeholder-transparent font-bold rounded-md focus:rounded-b-none
+                    class="ingredient placeholder bg-blue-500 text-transparent placeholder-transparent font-bold rounded-md focus:rounded-b-none
                     leading-loose outline-none my-0 w-48 focus:w-96 lg:focus:w-144 focus:text-white focus:placeholder-blue-200 transition-width duration-200">
                 </input>
                 <label class="absolute left-0 text-white font-bold py-4 px-4 leading-loose pointer-events-none">
                     Ingrédients
                 </label>
-                <ul class="absolute top-14 flex flex-row flex-wrap bg-blue-500 font-bold text-white
+                <ul class="ingredients absolute top-14 flex flex-row flex-wrap bg-blue-500 font-bold text-white
                         w-48 h-0 rounded-b-md transition-all duration-200 overflow-hidden">
                 </ul>
             </div>
@@ -46,11 +46,11 @@
         this.querySelectorAll("li").forEach(element => {element.remove()})
         let ingredients = [];
         if(request === "") { 
-            ingredients = [...this.allIngredients].sort().slice(0,42)
+            ingredients = [...this.allIngredients].sort().slice(0,30);
             this.querySelector("ul").classList.remove("search");
         }
         else {
-            ingredients = [...this.allIngredients].sort().filter(ingredient => ingredient.includes(request))
+            ingredients = [...this.allIngredients].sort().filter(ingredient => ingredient.toLowerCase().includes(request.toLowerCase())).slice(0,30);
             this.querySelector("ul").classList.add("search");
         }
         ingredients.forEach(ingredient => {

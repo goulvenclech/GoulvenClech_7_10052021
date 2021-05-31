@@ -4,6 +4,7 @@
  export class UstensilSelect extends HTMLElement {
     constructor() {
         super();
+        this.allUstensils = new Set();
     } 
     
     /**
@@ -12,28 +13,62 @@
     connectedCallback () {
         const template = document.createElement('template');
         template.innerHTML = `
-            <select type="text" class="ustensils bg-white border border-gray-500 border-1 my-4 p-2 rounded-md">
-                <option value="">-- Ustensiles --</option>
-            </select>
-      `;
+            <div class="relative my-4">
+                <input type="text" placeholder="Rechercher un ustensil..."
+                    class="placeholder bg-red-400 text-transparent placeholder-transparent font-bold rounded-md focus:rounded-b-none
+                    leading-loose outline-none my-0 w-48 focus:w-96 lg:focus:w-144 focus:text-white focus:placeholder-red-200 transition-width duration-200">
+                </input>
+                <label class="absolute left-0 text-white font-bold py-4 px-4 leading-loose pointer-events-none">
+                    Ustensiles
+                </label>
+                <ul class="ustensils absolute top-14 flex flex-row flex-wrap bg-red-400 font-bold text-white
+                        w-48 h-0 rounded-b-md transition-all duration-200 overflow-hidden">
+                </ul>
+            </div>
+        `;
         this.appendChild(template.content);
-        this.render();
+        this.queryUstensil();
+        this.render("");
+        this.listenInput();
     }
 
     /**
-     * Check all the recipes to register all the ustensils possible in the DB
-     * Use Set([]) to avoid duplicate values.
-     * Then fill the selec menu with all the differents options.
+     * 
      */
-    render() {
-        let allUstensils = new Set([]);
-        data.recipes.forEach(recipe => {
-            recipe.ustensils.forEach(ustensil => allUstensils.add(ustensil));
-        }) 
-        allUstensils.forEach(ustensil => {
-            this.querySelector(".ustensils option").insertAdjacentHTML('afterend', `
-                <option value="` + ustensil + `">` + ustensil + `</option>
+     queryUstensil() {
+        data.recipes.forEach(recipe => recipe.ustensils.forEach(ustensil => this.allUstensils.add(ustensil)));
+    }
+
+    /**
+     * 
+     */
+    render(request) {
+        this.querySelectorAll("li").forEach(element => {element.remove()})
+        let ustensils = [];
+        if(request === "") { 
+            ustensils = [...this.allUstensils].sort().slice(0,30)
+            this.querySelector("ul").classList.remove("search");
+        }
+        else {
+            ustensils = [...this.allUstensils].sort().filter(ustensil => ustensil.toLowerCase().includes(request.toLowerCase())).slice(0,30);
+            this.querySelector("ul").classList.add("search");
+        }
+        ustensils.forEach(ustensil => {
+            this.querySelector("ul").insertAdjacentHTML('beforeend', `
+                <li class="leading-normal w-48 py-2 px-4 overflow-ellipsis whitespace-nowrap overflow-hidden
+                        cursor-pointer hover:bg-red-600">`
+                        + ustensil + 
+                `</li>
             `)
+        })
+    }
+
+    /**
+     * 
+     */
+    listenInput() {
+        this.querySelector("input").addEventListener('input', input => {
+            this.render(input.target.value);
         })
     }
 }

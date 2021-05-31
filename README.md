@@ -10,7 +10,7 @@ Enfin, un effort particulier a été mis sur la documentation : j'utilise [JSDoc
 
 Adresse du répo : https://github.com/GoulvenC/GoulvenClech_7_10052021
 
-Démo live : *[Work in progress]*
+Démo live : https://oc-p7.goulven-clech.dev/
 
 Diapo soutenance : *[Work in progress]*
 
