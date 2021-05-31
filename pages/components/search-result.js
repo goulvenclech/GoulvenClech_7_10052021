@@ -50,10 +50,10 @@
             }
         })
         document.querySelectorAll("ul.ingredients li").forEach(ingredient => {
-            console.log(ingredient.innerHTML)
+            // console.log(ingredient.innerHTML)
             ingredient.addEventListener('click', event => {
                 event.stopPropagation();
-                console.log(event.target.innerHTML);
+                // console.log(event.target.innerHTML);
             }) 
         })
     }
@@ -68,8 +68,9 @@
         // get the menus values
         let appliance = "";
         let ustensil = "";
+        let ingredients = [];
         // make a new search, then display all the result's recipes
-        this.results = research(request, appliance, ustensil)
+        this.results = research(request, appliance, ustensil, ingredients)
         this.render()
     }
 }

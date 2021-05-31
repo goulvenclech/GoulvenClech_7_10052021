@@ -1,12 +1,33 @@
 /**
- * RESEARCH ALGORITHM 1
+ * RESEARCH ALGORITHM 2
  * Here is all the logic to process a user request and return a list of corresponding recipes
- * This first algorithm has not pre-treatment of the data. He query the all DB, filter() on it
- * and try to match with the request.
+ * WORK IN PROGRESS
  */
 
 // Import database with all the recipes
-import data from "./assets/data/data.json"
+import rawData from "./assets/data/data.json"
+const recipes = pretreatData(rawData);
+
+/**
+ * Transform the raw data from the JSON to a clean object array
+ * @param {object} rawData - all the raw recipes from the JSON
+ * @returns {object} - all the recipes but make them ✨ clean ✨
+ */
+function pretreatData(rawData) {
+    let data = [];
+    rawData.recipes.forEach(recipe => {
+        data.push({
+            "id": recipe.id,
+            "name": recipe.name.toLowerCase(),
+            "description": recipe.description.toLowerCase(),
+            "appliance": recipe.appliance.toLowerCase(),
+            "ingredients": [...recipe.ingredients.map(ingredient => {return ingredient.ingredient.toLowerCase()})],
+            "ustensils": recipe.ustensils,
+        })
+    })
+    console.table(data);
+    return data;
+ }
 
 /**
  * Take an user request, return a list of corresponding recipes
@@ -17,7 +38,11 @@ import data from "./assets/data/data.json"
  */
  export function research(request, appliance, ustensil, ingredients) {
     console.time(research);
-    let result = data.recipes.filter(recipe =>
+    // toLowerCase() all the request
+    request = request.toLowerCase();
+    appliance = appliance.toLowerCase();
+    ustensil = ustensil.toLowerCase();
+    let result = recipes.filter(recipe =>
         matchAppliance(recipe, appliance)
         && matchUstensils(recipe, ustensil)
         && matchTagsIngredients(recipe, ingredients)
@@ -34,17 +59,21 @@ import data from "./assets/data/data.json"
  * @returns {boolean} - true if match
  */
 function matchAppliance(recipe, appliance) {
-    return recipe.appliance.toLowerCase().includes(appliance.toLowerCase());
+    return recipe.appliance.indexOf(appliance) !== -1;
 }
 
 /**
- * Check if a recipe match with the requested ustensil
+ * Check if a recipe match with the requested ustensil,
  * @param {object} recipe - recipe currently looked
  * @param {string} ustensil 
  * @returns {boolean} - true if match
  */
 function matchUstensils(recipe, ustensil) {
-    return recipe.ustensils.filter(recipeUstensil => recipeUstensil.toLowerCase().includes(ustensil.toLowerCase())).length > 0;
+    //  if no ustensil requested return true
+    if(ustensil === "") {return true}
+    else{
+        return recipe.ustensils.includes(ustensil.toLowerCase()).length > 0;
+    }
 }
 
 /**
@@ -54,9 +83,8 @@ function matchUstensils(recipe, ustensil) {
  * @returns {boolean} - true if match
  */
  function matchTagsIngredients(recipe, ingredients) {
-    let recipeIngredients = [];
-    recipe.ingredients.forEach(ingredient => recipeIngredients.push(ingredient.ingredient))
-    return ingredients.every(ing => recipeIngredients.includes(ing));
+    // WORK IN PROGRESS
+    return true;
 }
 
 /**
@@ -66,7 +94,7 @@ function matchUstensils(recipe, ustensil) {
  * @returns {boolean} - true if match
  */
 function matchName(recipe, request) {
-    return recipe.name.toLowerCase().includes(request.toLowerCase());
+    return recipe.name.indexOf(request.toLowerCase()) !== -1;
 }
 
 /**
@@ -76,7 +104,7 @@ function matchName(recipe, request) {
  * @returns {boolean} - true if match
  */
 function matchDescriptions(recipe, request) {
-    return recipe.description.toLowerCase().includes(request.toLowerCase());
+    return recipe.description.indexOf(request.toLowerCase()) !== -1;
 }
 
 /**
@@ -86,5 +114,5 @@ function matchDescriptions(recipe, request) {
  * @returns {boolean} - true if match
  */
 function matchIngredients(recipe, request) {
-    return recipe.ingredients.filter(ingredient => ingredient.ingredient.toLowerCase().includes(request.toLowerCase())).length > 0;
+    return recipe.ingredients.filter(ingredient => ingredient.includes(request.toLowerCase())).length > 0;
 }
