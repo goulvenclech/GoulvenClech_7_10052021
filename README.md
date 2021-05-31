@@ -1,5 +1,7 @@
 # Les Petits Plats (WIP)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/33f1b0f4-1171-4ebb-908a-107d726fb365/deploy-status)](https://app.netlify.com/sites/thirsty-snyder-cd2d51/deploys)
+
 Les Petits Plats est un moteur de recherche qui permet de trouver rapidement des recettes adaptées aux ingrédients et aux ustensiles que vous avez sous la main. Projet 7 de la formation OpenClassrooms "Développeur Front End".
 
 L'application consiste en une page simple, réalisée avec Javascript (vanilla) dans un paradigme [Orientée Prototype](https://en.wikipedia.org/wiki/Prototype-based_programming) en utilisant des [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components). Sur cette page un moteur de recherche permet de chercher dans une database de 50 recettes (représentée par un fichier JSON) soit via des mots clés (qui vont matcher avec le nom, la description ou la liste d'ingrédient des recettes) soit via un sélecteur d'ingrédients, d'ustensils ou d'appareils.

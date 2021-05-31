@@ -76,4 +76,4 @@
 }
 
 // Import the research function
-import {research} from "../../research.js"
+import {research} from "../../researchB.js"
