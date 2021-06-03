@@ -4,11 +4,11 @@
  export class SearchResult extends HTMLElement {
     constructor() {
         super();
-        this.results = research("", "", "");
+        this.results = search("", "", "", []);
     } 
     
     /**
-     * Insert a input template used by the research
+     * Insert a input template used by the search
      */
     connectedCallback () {
         const template = document.createElement('template');
@@ -50,10 +50,8 @@
             }
         })
         document.querySelectorAll("ul.ingredients li").forEach(ingredient => {
-            // console.log(ingredient.innerHTML)
             ingredient.addEventListener('click', event => {
                 event.stopPropagation();
-                // console.log(event.target.innerHTML);
             }) 
         })
     }
@@ -70,10 +68,10 @@
         let ustensil = "";
         let ingredients = [];
         // make a new search, then display all the result's recipes
-        this.results = research(request, appliance, ustensil, ingredients)
+        this.results = search(request, appliance, ustensil, ingredients)
         this.render()
     }
 }
 
-// Import the research function
-import {research} from "../../researchB.js"
+// Import the search function
+import {search} from "../../searchB.js"

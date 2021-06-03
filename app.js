@@ -2,10 +2,6 @@
 import "tailwindcss/tailwind.css"
 import "./assets/style/main.css"
 
-// import algorithms
-import "./research.js"
-import "./researchB.js"
-
 // import pages
 import {IndexPage} from "./pages/index.js"
 window.customElements.define("index-page", IndexPage);

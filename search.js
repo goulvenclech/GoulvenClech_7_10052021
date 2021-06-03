@@ -1,5 +1,5 @@
 /**
- * RESEARCH ALGORITHM 1
+ * SEARCH ALGORITHM 1
  * Here is all the logic to process a user request and return a list of corresponding recipes
  * This first algorithm has not pre-treatment of the data. He query the all DB, filter() on it
  * and try to match with the request.

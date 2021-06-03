@@ -1,5 +1,5 @@
 /**
- * RESEARCH ALGORITHM 2
+ * SEARCH ALGORITHM 2
  * Here is all the logic to process a user request and return a list of corresponding recipes
  * WORK IN PROGRESS
  */
@@ -25,7 +25,6 @@ function pretreatData(rawData) {
             "ustensils": recipe.ustensils,
         })
     })
-    console.table(data);
     return data;
  }
 
@@ -36,19 +35,20 @@ function pretreatData(rawData) {
  * @param {string} ustensil - value of the ustensil <select>
  * @returns {array} - array of objects (corresponding recipes)
  */
- export function research(request, appliance, ustensil, ingredients) {
-    console.time(research);
-    // toLowerCase() all the request
+ export function search(request, appliance, ustensil, ingredients) {
+     // lower case all the request and params
     request = request.toLowerCase();
     appliance = appliance.toLowerCase();
     ustensil = ustensil.toLowerCase();
+    ingredients = ingredients.map(ingredient => ingredient.toLowerCase());
+    // toLowerCase() all the request
     let result = recipes.filter(recipe =>
         matchAppliance(recipe, appliance)
         && matchUstensils(recipe, ustensil)
         && matchTagsIngredients(recipe, ingredients)
         && ( matchName(recipe, request) || matchDescriptions(recipe, request) || matchIngredients(recipe, request))
     );
-    console.timeEnd(research);
+    console.log(result);
     return result;
 }
 
@@ -70,10 +70,7 @@ function matchAppliance(recipe, appliance) {
  */
 function matchUstensils(recipe, ustensil) {
     //  if no ustensil requested return true
-    if(ustensil === "") {return true}
-    else{
-        return recipe.ustensils.includes(ustensil.toLowerCase()).length > 0;
-    }
+     return ustensil == 0 ? true : recipe.ustensils.indexOf(ustensil) !== -1;
 }
 
 /**
@@ -94,7 +91,8 @@ function matchUstensils(recipe, ustensil) {
  * @returns {boolean} - true if match
  */
 function matchName(recipe, request) {
-    return recipe.name.indexOf(request.toLowerCase()) !== -1;
+    console.log(recipe.name.includes(request))
+    return recipe.name.includes(request);
 }
 
 /**
@@ -104,7 +102,7 @@ function matchName(recipe, request) {
  * @returns {boolean} - true if match
  */
 function matchDescriptions(recipe, request) {
-    return recipe.description.indexOf(request.toLowerCase()) !== -1;
+    return recipe.description.includes(request);
 }
 
 /**
@@ -114,5 +112,5 @@ function matchDescriptions(recipe, request) {
  * @returns {boolean} - true if match
  */
 function matchIngredients(recipe, request) {
-    return recipe.ingredients.filter(ingredient => ingredient.includes(request.toLowerCase())).length > 0;
+    return recipe.ingredients.filter(ingredient => ingredient.includes(request)).length > 0;
 }
