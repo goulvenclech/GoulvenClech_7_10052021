@@ -4,7 +4,7 @@
  export class SearchResult extends HTMLElement {
     constructor() {
         super();
-        this.results = search("", "", "", []);
+        this.results = search("Coc", "BLENDER", "", []);
     } 
     
     /**

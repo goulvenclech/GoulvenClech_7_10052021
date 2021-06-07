@@ -1,5 +1,5 @@
 /**
- * An imput used for the research
+ * An imput used for the search
  */
  export class SearchBar extends HTMLElement {
     constructor() {
@@ -7,7 +7,7 @@
     } 
     
     /**
-     * Insert a input template used by the research
+     * Insert a input template used by the search
      */
     connectedCallback () {
         const template = document.createElement('template');

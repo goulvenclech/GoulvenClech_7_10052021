@@ -7,6 +7,8 @@
 
 // Import database with all the recipes
 import data from "./assets/data/data.json"
+// store last results
+let lestSearchResult = [];
 
 /**
  * Take an user request, return a list of corresponding recipes
@@ -15,76 +17,61 @@ import data from "./assets/data/data.json"
  * @param {string} ustensil - value of the ustensil <select>
  * @returns {array} - array of objects (corresponding recipes)
  */
- export function research(request, appliance, ustensil, ingredients) {
-    console.time(research);
-    let result = data.recipes.filter(recipe =>
-        matchAppliance(recipe, appliance)
-        && matchUstensils(recipe, ustensil)
-        && matchTagsIngredients(recipe, ingredients)
-        && ( matchName(recipe, request) || matchDescriptions(recipe, request) || matchIngredients(recipe, request))
-    );
-    console.timeEnd(research);
-    return result;
+export function search(request, appliance, ustensil, ingredients) {
+    console.time("search");
+    let recipes = data.recipes;
+    recipes = matchAppliance(recipes, appliance.toLowerCase());
+    recipes = matchUstensils(recipes, ustensil.toLowerCase());
+    recipes = matchContent(recipes, request.toLowerCase());
+    //save the result
+    lestSearchResult = recipes;
+    console.timeEnd("search");
+    return recipes;
 }
 
 /**
- * Check if a recipe match with the requested appliance
- * @param {object} recipe - recipe currently looked
- * @param {string} appliance
- * @returns {boolean} - true if match
  */
-function matchAppliance(recipe, appliance) {
-    return recipe.appliance.toLowerCase().includes(appliance.toLowerCase());
+function matchAppliance(recipes, appliance) {
+    let recipesMatched = [];
+    for (let recipe of recipes) {
+        if (recipe.appliance.toLowerCase().includes(appliance)) {
+            recipesMatched.push(recipe)
+        }
+    }
+    return recipesMatched;
 }
 
 /**
- * Check if a recipe match with the requested ustensil
- * @param {object} recipe - recipe currently looked
- * @param {string} ustensil 
- * @returns {boolean} - true if match
  */
-function matchUstensils(recipe, ustensil) {
-    return recipe.ustensils.filter(recipeUstensil => recipeUstensil.toLowerCase().includes(ustensil.toLowerCase())).length > 0;
+function matchUstensils(recipes, ustensil) {
+    let recipesMatched = [];
+    console.log(ustensil)
+    for (let recipe of recipes) {
+        if (ustensil == "" || recipe.ustensils.filter(usten => usten.includes(ustensil)).length > 0) {
+            recipesMatched.push(recipe)
+        }
+    }
+    return recipesMatched;
 }
 
 /**
- * Check if a recipe match with the all the tagged ingredients
- * @param {object} recipe - recipe currently looked
- * @param {array} ingredients 
- * @returns {boolean} - true if match
  */
- function matchTagsIngredients(recipe, ingredients) {
-    let recipeIngredients = [];
-    recipe.ingredients.forEach(ingredient => recipeIngredients.push(ingredient.ingredient))
-    return ingredients.every(ing => recipeIngredients.includes(ing));
+ function matchIngredients(recipe, ingredients) {
+    
 }
 
 /**
- * Check if a recipe's name match with the request
- * @param {object} recipe - recipe currently looked
- * @param {string} request 
- * @returns {boolean} - true if match
  */
-function matchName(recipe, request) {
-    return recipe.name.toLowerCase().includes(request.toLowerCase());
-}
-
-/**
- * Check if a recipe's description match with the request
- * @param {object} recipe - recipe currently looked
- * @param {string} request 
- * @returns {boolean} - true if match
- */
-function matchDescriptions(recipe, request) {
-    return recipe.description.toLowerCase().includes(request.toLowerCase());
-}
-
-/**
- * Check if a recipe's list of ingredients match with the request
- * @param {object} recipe - recipe currently looked
- * @param {string} request 
- * @returns {boolean} - true if match
- */
-function matchIngredients(recipe, request) {
-    return recipe.ingredients.filter(ingredient => ingredient.ingredient.toLowerCase().includes(request.toLowerCase())).length > 0;
+function matchContent(recipes, request) {
+    let recipesMatched = [];
+    for (let recipe of recipes) {
+        if (recipe.name.toLowerCase().includes(request) 
+            || recipe.description.toLowerCase().includes(request)
+            || recipe.ingredients
+                .filter(ingredient => ingredient.ingredient
+                    .toLowerCase().includes(request)).length > 0) {
+            recipesMatched.push(recipe)
+        }
+    }
+    return recipesMatched;
 }

@@ -6,7 +6,7 @@ Les Petits Plats est un moteur de recherche qui permet de trouver rapidement des
 
 L'application consiste en une page simple, réalisée avec Javascript (vanilla) dans un paradigme [Orientée Prototype](https://en.wikipedia.org/wiki/Prototype-based_programming) en utilisant des [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components). Sur cette page un moteur de recherche permet de chercher dans une database de 50 recettes (représentée par un fichier JSON) soit via des mots clés (qui vont matcher avec le nom, la description ou la liste d'ingrédient des recettes) soit via un sélecteur d'ingrédients, d'ustensils ou d'appareils.
 
-Coté "backend", cette recherche peux être en fait deux algorithmes différents, les deux étant dans tout les cas dans `research.js`, réalisés avec Javascript (vanilla) dans un paradigme [Fonctionnel](https://en.wikipedia.org/wiki/Functional_programming). Le second algorithme se caractérise notamment par un pré-traitement de la DB, plusieurs dictionnaires sont ainsi réalisés à partir du JSON, ne comportant que les données utiles pour la recherche, permettant ainsi un traitement plus simple et plus rapide.
+Coté "backend", cette recherche peux être en fait deux algorithmes différents, les deux étant dans tout les cas dans `search.js`, réalisés avec Javascript (vanilla) dans un paradigme [Fonctionnel](https://en.wikipedia.org/wiki/Functional_programming). Le second algorithme se caractérise notamment par un pré-traitement de la DB, plusieurs dictionnaires sont ainsi réalisés à partir du JSON, ne comportant que les données utiles pour la recherche, permettant ainsi un traitement plus simple et plus rapide.
 
 Enfin, un effort particulier a été mis sur la documentation : j'utilise [JSDoc 3](https://jsdoc.app/) dont l'utilisation est facilité par le paradigme fonctionnel, ainsi que [???] pour les schémas illustrants les algorithmes.
 
@@ -44,7 +44,7 @@ Le projet Les Petits Plats est une projet d'application web entièrement dévelo
 
 `index.html`, chargé par le navigateur quand l'utilisateur arrive sur le site, appelle `app.js`
 
-`research.js`, contient toute la logique algorithme du moteur de recherche 
+`search.js`, contient toute la logique algorithme du moteur de recherche 
 
 `package.json` & `yarn.lock`, fichiers utilisés par Yarn pour gérer les dépendances
 
@@ -58,7 +58,7 @@ Le projet Les Petits Plats est une projet d'application web entièrement dévelo
 
 ### Algo 1
 
-*[Work in progress]*
+![](./alg.drawio.png)
 
 ### Algo 2
 

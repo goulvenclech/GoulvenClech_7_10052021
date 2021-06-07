@@ -36,6 +36,7 @@ function pretreatData(rawData) {
  * @returns {array} - array of objects (corresponding recipes)
  */
  export function search(request, appliance, ustensil, ingredients) {
+    console.time("search");
      // lower case all the request and params
     request = request.toLowerCase();
     appliance = appliance.toLowerCase();
@@ -48,7 +49,7 @@ function pretreatData(rawData) {
         && matchTagsIngredients(recipe, ingredients)
         && ( matchName(recipe, request) || matchDescriptions(recipe, request) || matchIngredients(recipe, request))
     );
-    console.log(result);
+    console.timeEnd("search");
     return result;
 }
 
@@ -91,7 +92,6 @@ function matchUstensils(recipe, ustensil) {
  * @returns {boolean} - true if match
  */
 function matchName(recipe, request) {
-    console.log(recipe.name.includes(request))
     return recipe.name.includes(request);
 }
 
