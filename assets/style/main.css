@@ -13,13 +13,13 @@
  *  ingredients-select.js
  *  appliance-select.js
  */
-input:focus ~ ul {
+input.focus ~ ul {
     @apply w-96 lg:w-144 h-auto overflow-hidden;
 }
 
-input:focus ~ ul.ingredients {@apply h-250;}
-input:focus ~ ul.appliances {@apply h-60 lg:h-52}
-input:focus ~ ul.ustensils {@apply h-250;}
+input.focus ~ ul.ingredients {@apply h-250;}
+input.focus ~ ul.appliances {@apply h-60 lg:h-52}
+input.focus ~ ul.ustensils {@apply h-250;}
 
 input:focus ~ ul.search {
     @apply h-auto;

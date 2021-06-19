@@ -4,7 +4,11 @@
  export class SearchResult extends HTMLElement {
     constructor() {
         super();
-        this.results = search("Coc", "BLENDER", "", []);
+        this.results = search("", "", "", []);
+        this.request = "";
+        this.appliance = "";
+        this.ustensil = "";
+        this.ingredients = [];
     } 
     
     /**
@@ -44,34 +48,47 @@
     listeners() {
         document.querySelector("input").addEventListener('input', input => {
             if(input.target.value.length > 2) {
-                this.querySearch(input.target.value);
+                // blabla
+                this.request = document.querySelector("input").value;
+                this.querySearch();
             }else {
-                this.querySearch("");
+                // blabla
+                this.request = "";
+                this.querySearch();
             }
         })
         document.querySelectorAll("ul.ingredients li").forEach(ingredient => {
             ingredient.addEventListener('click', event => {
-                event.stopPropagation();
+                this.ingredients.push(event.target.innerHTML);
+                this.querySearch();
+            }) 
+        })
+        document.querySelectorAll("ul.appliances li").forEach(appliance => {
+            appliance.addEventListener('click', event => {
+                this.appliance = event.target.innerHTML;
+                this.querySearch();
+            }) 
+        })
+        document.querySelectorAll("ul.ustensils li").forEach(ustensil => {
+            ustensil.addEventListener('click', event => {
+                this.ustensil = event.target.innerHTML;
+                this.querySearch();
             }) 
         })
     }
 
     /**
      * Make a new result based on the user's request, then display the results
-     * @param {string} request - the search typed by the user in the search bar
      */
-     querySearch(request) {
+     querySearch() {
         // clean old results
         this.querySelectorAll("article").forEach(element => {element.remove()})
-        // get the menus values
-        let appliance = "";
-        let ustensil = "";
-        let ingredients = [];
         // make a new search, then display all the result's recipes
-        this.results = search(request, appliance, ustensil, ingredients)
+        console.log(this.request + ", " + this.appliance + ", " + this.ustensil + ", [" + this.ingredients + "]")
+        this.results = search(this.request, this.appliance, this.ustensil, this.ingredients)
         this.render()
     }
 }
 
 // Import the search function
-import {search} from "../../searchB.js"
+import {search} from "../../search.js"

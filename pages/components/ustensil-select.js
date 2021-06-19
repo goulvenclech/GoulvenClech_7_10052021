@@ -29,7 +29,26 @@
         this.appendChild(template.content);
         this.queryUstensil();
         this.render("");
+        this.test();
         this.listenInput();
+    }
+
+    test() {
+        this.querySelector("input").addEventListener("focus", () => {
+            this.querySelector("input").classList.add("focus");
+        })
+        window.addEventListener("click", event => {
+            if (event.target.parentElement !== this.querySelector("div")) {
+                this.querySelector("input").classList.remove("focus")
+            }
+        })
+        window.addEventListener('keyup', event => { 
+            if(event.key == "Tab") {
+                if (document.activeElement !== this.querySelector("input")) {
+                    this.querySelector("input").classList.remove("focus")
+                }
+            }
+        })
     }
 
     /**
