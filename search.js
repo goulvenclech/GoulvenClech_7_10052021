@@ -8,7 +8,7 @@
 // Import database with all the recipes
 import data from "./assets/data/data.json"
 // store last results
-let lastSearchResult = [];
+let lastSearch = [];
 
 /**
  * Take an user request, return a list of corresponding recipes
@@ -25,9 +25,13 @@ export function search(request, appliance, ustensil, ingredients) {
     recipes = matchIngredients(recipes, ingredients);
     recipes = matchContent(recipes, request.toLowerCase());
     //save the result
-    lastSearchResult = recipes;
+    lastSearch = [appliance, ustensil, ingredients, recipes];
     console.timeEnd("search");
     return recipes;
+}
+
+export function getLastSearch() {
+    return lastSearch;
 }
 
 /**

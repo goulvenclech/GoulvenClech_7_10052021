@@ -12,6 +12,8 @@ import {IngredientsSelect} from "./pages/components/ingredients-select.js"
 window.customElements.define("ingredients-select", IngredientsSelect);
 import {SearchBar} from "./pages/components/search-bar.js"
 window.customElements.define("search-bar", SearchBar);
+import {SearchParams} from "./pages/components/search-params.js"
+window.customElements.define("search-params", SearchParams);
 import {SearchResult} from "./pages/components/search-result.js"
 window.customElements.define("search-result", SearchResult);
 import {UstensilSelect} from "./pages/components/ustensil-select.js"

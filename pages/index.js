@@ -18,6 +18,7 @@
                 </h1>
                 <p>Ca va faire de l'algo ici...</p>
                 <search-bar></search-bar>
+                <search-params></search-params>
                 <section class="flex gap-6">
                     <ingredients-select></ingredients-select>
                     <appliance-select></appliance-select>

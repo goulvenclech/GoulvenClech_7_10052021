@@ -23,6 +23,7 @@
         this.appendChild(template.content);
         this.render();
         this.listeners();
+        this.observer();
     }
 
     render() {
@@ -77,6 +78,30 @@
         })
     }
 
+    observer() {
+        let observer = new MutationObserver(mutations => {
+            mutations.forEach(mutation => {
+                mutation.addedNodes.forEach(addedNode => {
+                    if(addedNode.tagName == "SPAN") {
+                        addedNode.addEventListener("click", () => {
+                            console.log("click")
+                            if(addedNode.classList.contains("ingredient")){
+                                this.ingredients = this.ingredients.filter(ingredient => ingredient !== addedNode.innerHTML);
+                            }else if(addedNode.classList.contains("ustensil")) {
+                                this.ustensil = "";
+                            }else if(addedNode.classList.contains("appliance")){
+                                this.appliance = "";
+                            }
+                            addedNode.remove();
+                            this.querySearch();
+                        })
+                    }
+                })
+            })
+        });
+        observer.observe(document.querySelector(".searchParams"), {childList: true});
+    }
+
     /**
      * Make a new result based on the user's request, then display the results
      */
@@ -84,7 +109,6 @@
         // clean old results
         this.querySelectorAll("article").forEach(element => {element.remove()})
         // make a new search, then display all the result's recipes
-        console.log(this.request + ", " + this.appliance + ", " + this.ustensil + ", [" + this.ingredients + "]")
         this.results = search(this.request, this.appliance, this.ustensil, this.ingredients)
         this.render()
     }

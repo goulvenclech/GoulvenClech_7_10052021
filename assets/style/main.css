@@ -18,7 +18,7 @@ input.focus ~ ul {
 }
 
 input.focus ~ ul.ingredients {@apply h-250;}
-input.focus ~ ul.appliances {@apply h-60 lg:h-52}
+input.focus ~ ul.appliances {@apply h-60 lg:h-52;}
 input.focus ~ ul.ustensils {@apply h-250;}
 
 input:focus ~ ul.search {
@@ -28,3 +28,13 @@ input:focus ~ ul.search {
 input:focus + label {
     @apply hidden;
 }
+
+/**
+ *  USED BY :
+ *  search-params.js
+ */
+ .searchParams > span {@apply p-2 rounded-md text-white cursor-pointer;}
+
+ .searchParams > span.ingredient {@apply bg-blue-500;}
+ .searchParams > span.appliance {@apply bg-green-500;}
+ .searchParams > span.ustensil {@apply bg-red-500;}
