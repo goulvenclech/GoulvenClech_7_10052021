@@ -12,14 +12,15 @@
     connectedCallback () {
         const template = document.createElement('template');
         template.innerHTML = `
-            <div class="m-12">
-                <h1 class="text-yellow-500 font-semibold text-4xl">
-                    Les Petits Plats
+            <div class="mx-auto p-4 max-w-screen-xl">
+                <h1>
+                    <img class="block mx-auto max-h-24 mt-8"
+                    src="` + gigaLogo + `">
+                    </img>
                 </h1>
-                <p>Ca va faire de l'algo ici...</p>
                 <search-bar></search-bar>
                 <search-params></search-params>
-                <section class="flex gap-6">
+                <section class="my-4 flex flex-col md:flex-row gap-4 md:gap-6">
                     <ingredients-select></ingredients-select>
                     <appliance-select></appliance-select>
                     <ustensil-select></ustensil-select>
@@ -31,3 +32,4 @@
     }
 }
 
+import gigaLogo from "../assets/logo.png";

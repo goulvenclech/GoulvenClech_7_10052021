@@ -13,16 +13,16 @@
     connectedCallback () {
         const template = document.createElement('template');
         template.innerHTML = `
-            <div class="relative my-4">
+            <div class="relative">
                 <input type="text" placeholder="Rechercher un ustensil..."
-                    class="placeholder bg-red-400 text-transparent placeholder-transparent font-bold rounded-md focus:rounded-b-none
-                    leading-loose outline-none my-0 w-48 focus:w-96 lg:focus:w-144 focus:text-white focus:placeholder-red-200 transition-width duration-200">
+                    class="ustensil placeholder bg-red-400 text-transparent placeholder-transparent font-bold rounded-md focus:rounded-b-none
+                    leading-loose outline-none my-0 w-full md:w-48 md:md:focus:w-96 lg:focus:w-144 focus:text-white focus:placeholder-red-200 transition-width duration-200">
                 </input>
                 <label class="absolute left-0 text-white font-bold py-4 px-4 leading-loose pointer-events-none">
                     Ustensiles
                 </label>
                 <ul class="ustensils absolute top-14 flex flex-row flex-wrap bg-red-400 font-bold text-white
-                        w-48 h-0 rounded-b-md transition-all duration-200 overflow-hidden">
+                        w-full md:w-48 h-0 rounded-b-md transition-all duration-200 overflow-hidden">
                 </ul>
             </div>
         `;
@@ -74,7 +74,7 @@
         }
         ustensils.forEach(ustensil => {
             this.querySelector("ul").insertAdjacentHTML('beforeend', `
-                <li class="leading-normal w-48 py-2 px-4 overflow-ellipsis whitespace-nowrap overflow-hidden
+                <li class="leading-normal w-full md:w-48 py-2 px-4 overflow-ellipsis whitespace-nowrap overflow-hidden
                         cursor-pointer hover:bg-red-600">`
                         + ustensil + 
                 `</li>

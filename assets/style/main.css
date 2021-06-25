@@ -14,7 +14,7 @@
  *  appliance-select.js
  */
 input.focus ~ ul {
-    @apply w-96 lg:w-144 h-auto overflow-hidden;
+    @apply w-full md:w-96 lg:w-144 h-auto overflow-hidden z-10;
 }
 
 input.focus ~ ul.ingredients {@apply h-250;}
@@ -33,7 +33,7 @@ input:focus + label {
  *  USED BY :
  *  search-params.js
  */
- .searchParams > span {@apply p-2 rounded-md text-white cursor-pointer;}
+ .searchParams > span {@apply py-2 px-4 inline-block mt-4 mr-2 rounded-md text-white cursor-pointer;}
 
  .searchParams > span.ingredient {@apply bg-blue-500;}
  .searchParams > span.appliance {@apply bg-green-500;}

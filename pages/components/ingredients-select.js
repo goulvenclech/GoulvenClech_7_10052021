@@ -13,16 +13,16 @@
     connectedCallback () {
         const template = document.createElement('template');
         template.innerHTML = `
-            <div class="relative my-4">
+            <div class="relative">
                 <input type="text" placeholder="Rechercher un ingrédient..."
                     class="ingredient placeholder bg-blue-500 text-transparent placeholder-transparent font-bold rounded-md focus:rounded-b-none
-                    leading-loose outline-none my-0 w-48 focus:w-96 lg:focus:w-144 focus:text-white focus:placeholder-blue-200 transition-width duration-200">
+                    leading-loose outline-none my-0 w-full md:w-48 md:focus:w-96 lg:focus:w-144 focus:text-white focus:placeholder-blue-200 transition-width duration-200">
                 </input>
                 <label class="absolute left-0 text-white font-bold py-4 px-4 leading-loose pointer-events-none">
                     Ingrédients
                 </label>
                 <ul class="ingredients absolute top-14 flex flex-row flex-wrap bg-blue-500 font-bold text-white
-                        w-48 h-0 rounded-b-md transition-all duration-200 overflow-hidden">
+                        w-full md:w-48 h-0 rounded-b-md transition-all duration-200 overflow-hidden">
                 </ul>
             </div>
       `;
@@ -74,7 +74,7 @@
         }
         ingredients.forEach(ingredient => {
             this.querySelector("ul").insertAdjacentHTML('beforeend', `
-                <li class="leading-normal w-48 py-2 px-4 overflow-ellipsis whitespace-nowrap overflow-hidden
+                <li class="leading-normal w-full md:w-48 py-2 px-4 overflow-ellipsis whitespace-nowrap overflow-hidden
                         cursor-pointer hover:bg-blue-700">`
                         + ingredient + 
                 `</li>

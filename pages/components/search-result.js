@@ -17,7 +17,7 @@
     connectedCallback () {
         const template = document.createElement('template');
         template.innerHTML = `
-            <section class="grid grid-cols-2 lg:grid-cols-3 gap-4">
+            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             </section>
       `;
         this.appendChild(template.content);
@@ -64,17 +64,41 @@
                 this.querySearch();
             }) 
         })
+        document.querySelector("input.ingredient").addEventListener("change", () => {
+            document.querySelectorAll("ul.ingredients li").forEach(ingredient => {
+                ingredient.addEventListener('click', event => {
+                    this.ingredients.push(event.target.innerHTML);
+                    this.querySearch();
+                }) 
+            })
+        })
         document.querySelectorAll("ul.appliances li").forEach(appliance => {
             appliance.addEventListener('click', event => {
                 this.appliance = event.target.innerHTML;
                 this.querySearch();
             }) 
         })
+        document.querySelector("input.appliance").addEventListener("change", () => {
+            document.querySelectorAll("ul.appliances li").forEach(appliance => {
+                appliance.addEventListener('click', event => {
+                    this.appliance = event.target.innerHTML;
+                    this.querySearch();
+                }) 
+            })
+        })
         document.querySelectorAll("ul.ustensils li").forEach(ustensil => {
             ustensil.addEventListener('click', event => {
                 this.ustensil = event.target.innerHTML;
                 this.querySearch();
             }) 
+        })
+        document.querySelector("input.ustensil").addEventListener("change", () => {
+            document.querySelectorAll("ul.ustensils li").forEach(ustensil => {
+                ustensil.addEventListener('click', event => {
+                    this.ustensil = event.target.innerHTML;
+                    this.querySearch();
+                }) 
+            })
         })
     }
 

@@ -47,21 +47,41 @@
 
     listeners() {
         window.addEventListener("DOMContentLoaded", () => {
-            console.log("Bouh")
             document.querySelectorAll("ul.ingredients li").forEach(ingredient => {
                 ingredient.addEventListener('click', () => {
                     this.render();
                 }) 
+            })
+            document.querySelector("input.ingredient").addEventListener("change", () => {
+                document.querySelectorAll("ul.ingredients li").forEach(ingredient => {
+                    ingredient.addEventListener('click', event => {
+                        this.render();
+                    }) 
+                })
             })
             document.querySelectorAll("ul.appliances li").forEach(appliance => {
                 appliance.addEventListener('click', () => {
                     this.render();
                 }) 
             })
+            document.querySelector("input.appliance").addEventListener("change", () => {
+                document.querySelectorAll("ul.appliances li").forEach(appliance => {
+                    appliance.addEventListener('click', event => {
+                        this.render();
+                    }) 
+                })
+            })
             document.querySelectorAll("ul.ustensils li").forEach(ustensil => {
                 ustensil.addEventListener('click', () => {
                     this.render();
                 }) 
+            })
+            document.querySelector("input.ustensil").addEventListener("change", () => {
+                document.querySelectorAll("ul.ustensils li").forEach(ustensil => {
+                    ustensil.addEventListener('click', event => {
+                        this.render();
+                    }) 
+                })
             })
         })
     }
