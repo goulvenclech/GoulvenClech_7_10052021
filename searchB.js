@@ -22,12 +22,12 @@ function pretreatData(rawData) {
     let data = [];
     rawData.recipes.forEach(recipe => {
         data.push({
-            "id": recipe.id,
             "name": recipe.name.toLowerCase(),
             "description": recipe.description.toLowerCase(),
             "appliance": recipe.appliance.toLowerCase(),
             "ingredients": [...recipe.ingredients.map(ingredient => {return ingredient.ingredient.toLowerCase()})],
             "ustensils": recipe.ustensils,
+            "raw": recipe,
         })
     })
     return data;
@@ -48,15 +48,18 @@ function pretreatData(rawData) {
     ustensil = ustensil.toLowerCase();
     ingredients = ingredients.map(ingredient => ingredient.toLowerCase());
     // toLowerCase() all the request
-    let result = recipes.filter(recipe =>
+    let preResult = recipes.filter(recipe =>
         matchAppliance(recipe, appliance)
         && matchUstensils(recipe, ustensil)
         && matchTagsIngredients(recipe, ingredients)
         && ( matchName(recipe, request) || matchDescriptions(recipe, request) || matchIngredients(recipe, request))
     );
+    // Cancels pretreatment to recover originals objects
+    let result = preResult.map(x => x = x.raw)
     console.timeEnd("search");
     //save the result
     lastSearch = [appliance, ustensil, ingredients, result];
+    console.log(result)
     return result;
 }
 

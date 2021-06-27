@@ -29,16 +29,37 @@
     render() {
         this.results.forEach(recipe => {
             this.querySelector("section").insertAdjacentHTML('afterBegin', `
-            <article class="bg-gray-400 p-4 h-44 overflow-hidden overflow-ellipsis
+            <article class="bg-gray-300 overflow-hidden overflow-ellipsis
                         rounded-md">
-                <h3 class="font-bold">`
-                    + recipe.name  +
-                `<h3>
-                <p>`
-                    + recipe.description +
-                `</p>
+                <div class="h-40 overflow-hidden">
+                    <img src="` + placeholder + `"
+                        class="object-cover">
+                    </img>
+                </div>
+                <div class="p-4">
+                    <div class="flex">
+                        <h3 class="text-xl flex-1 gap-4">`
+                            + recipe.name  +
+                        `<h3>
+                        <p class="text-xl">`
+                            + recipe.time +
+                        ` min</p>
+                    </div>
+                    <div class="flex mt-4 gap-4">
+                        <ul class="w-1/2 ingredients text-sm">
+                        </ul>
+                        <p class="w-1/2 max-h-40 text-sm">`
+                            + recipe.description.substr(0, 200) +
+                        `...</p>
+                    </div>
+                </div>
             </article>
             `)
+            recipe.ingredients.forEach(ingredient => this.querySelector(".ingredients").insertAdjacentHTML("beforeend",
+                `<li><span class="font-bold">` 
+                    + ingredient.ingredient + 
+                    ":</span>  " + ingredient.quantity + " " + (ingredient.unit || "") + "  " + 
+                `</li>`))
         })
     }
 
@@ -138,5 +159,8 @@
     }
 }
 
+
 // Import the search function
 import {search} from "../../searchB.js"
+// Import the placeholder image
+import placeholder from "../../assets/placeholder.jpg"
