@@ -21,7 +21,7 @@ input.focus ~ ul.ingredients {@apply h-250;}
 input.focus ~ ul.appliances {@apply h-60 lg:h-52;}
 input.focus ~ ul.ustensils {@apply h-250;}
 
-input:focus ~ ul.search {
+input.focus ~ ul.search {
     @apply h-auto;
 }
 

@@ -1,4 +1,4 @@
-# Les Petits Plats (WIP)
+# Les Petits Plats
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/33f1b0f4-1171-4ebb-908a-107d726fb365/deploy-status)](https://app.netlify.com/sites/thirsty-snyder-cd2d51/deploys)
 
@@ -6,9 +6,13 @@ Les Petits Plats est un moteur de recherche qui permet de trouver rapidement des
 
 L'application consiste en une page simple, réalisée avec Javascript (vanilla) dans un paradigme [Orientée Prototype](https://en.wikipedia.org/wiki/Prototype-based_programming) en utilisant des [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components). Sur cette page un moteur de recherche permet de chercher dans une database de 50 recettes (représentée par un fichier JSON) soit via des mots clés (qui vont matcher avec le nom, la description ou la liste d'ingrédient des recettes) soit via un sélecteur d'ingrédients, d'ustensils ou d'appareils.
 
-Coté "backend", cette recherche peux être en fait deux algorithmes différents, les deux étant dans tout les cas dans `search.js`, réalisés avec Javascript (vanilla) dans un paradigme [Fonctionnel](https://en.wikipedia.org/wiki/Functional_programming). Le second algorithme se caractérise notamment par un pré-traitement de la DB, plusieurs dictionnaires sont ainsi réalisés à partir du JSON, ne comportant que les données utiles pour la recherche, permettant ainsi un traitement plus simple et plus rapide.
+La partie recherche (algo) a été séparée de l'application front (permet l'utisation de son "API" par différents front, avec des présentations différentes, améliore également la maintabilité), réalisée avec Javascript (vanilla) dans un paradigme [Fonctionnel](https://en.wikipedia.org/wiki/Functional_programming). Il existe en fait deux algorythmes différents pour cette recherche, `search.js` et `searchB.js`. Le second algorithme se caractérise notamment par un pré-traitement de la data et l'utilisation de méthodes plutôt que d'instructions.
 
-Enfin, un effort particulier a été mis sur la documentation : j'utilise [JSDoc 3](https://jsdoc.app/) dont l'utilisation est facilité par le paradigme fonctionnel, ainsi que [???] pour les schémas illustrants les algorithmes.
+Enfin, un effort particulier a été mis sur la documentation : j'utilise [JSDoc 3](https://jsdoc.app/) dont l'utilisation est facilité par le paradigme fonctionnel, ainsi que [Draw.io](https://draw.io/) pour les schémas illustrants les algorithmes.
+
+Plusieurs pistes d'améliorations : -> j'aurais pu tester différentes structures de données pour le prétraitement de l'algo B, tel que les tables de hash ou une magic string -> la recherche pourrait ignorer les accents -> malgré quelques corrections, la DB contient beaucoup d'erreurs et de doublons -> le code coté front est loin d'être niquel, beaucoup de codes répétés sur les selects aurait pu être évité via un composant parent dont hériterais les enfans -> beaucoup de logique se trouve dans `search-result.js`, alors qu'utiliser un state global ou utiliser l'URL via une SPA aurait pu permettre de mieux la diviser entre les composants ou la mettre dans `index.js` tout en évitant de la répétition de code -> une partie des composants n'est pas très bien commenté -> le style aurait pu être amélioré à certains endroits
+
+Pour être honnête, je pense que ce projet m'a moins intéressé pour plusieurs raisons : on y voit clairement la limite de JS vanilla par rapport aux frameworks / langages modernes pour faire du code bien organisé et maintenable, le JSON fournit était de piètre qualité, le défi algorithmique pas très intéressant, son critère d'évalutation peu pertinent (performance sur 50 recettes plutôt que son type de complexité), les ressources/ cours fournis pas adaptés... D'où le fait que je n'y ai pas passé plus de temps pour en peaufiner les détails.
 
 Adresse du répo : https://github.com/GoulvenC/GoulvenClech_7_10052021
 
@@ -44,7 +48,7 @@ Le projet Les Petits Plats est une projet d'application web entièrement dévelo
 
 `index.html`, chargé par le navigateur quand l'utilisateur arrive sur le site, appelle `app.js`
 
-`search.js`, contient toute la logique algorithme du moteur de recherche 
+`search.js` & `search.js`, contient toute la logique algorithme du moteur de recherche 
 
 `package.json` & `yarn.lock`, fichiers utilisés par Yarn pour gérer les dépendances
 
@@ -56,13 +60,13 @@ Le projet Les Petits Plats est une projet d'application web entièrement dévelo
 
 ## Architectures des algos
 
-### Algo 1
+### Algo A
 
 ![](./alg.drawio.png)
 
-### Algo 2
+### Algo B
 
-*[Work in progress]*
+![](./algB.drawio.png)
 
 ## License 
 
