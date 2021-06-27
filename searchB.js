@@ -7,6 +7,11 @@
 // Import database with all the recipes
 import rawData from "./assets/data/data.json"
 const recipes = pretreatData(rawData);
+// store last results
+let lastSearch = [];
+export function getLastSearch() {
+    return lastSearch;
+}
 
 /**
  * Transform the raw data from the JSON to a clean object array
@@ -50,6 +55,8 @@ function pretreatData(rawData) {
         && ( matchName(recipe, request) || matchDescriptions(recipe, request) || matchIngredients(recipe, request))
     );
     console.timeEnd("search");
+    //save the result
+    lastSearch = [appliance, ustensil, ingredients, result];
     return result;
 }
 
@@ -81,8 +88,7 @@ function matchUstensils(recipe, ustensil) {
  * @returns {boolean} - true if match
  */
  function matchTagsIngredients(recipe, ingredients) {
-    // WORK IN PROGRESS
-    return true;
+    return ingredients.every(ingredient => recipe.ingredients.includes(ingredient));
 }
 
 /**

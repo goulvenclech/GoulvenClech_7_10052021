@@ -110,7 +110,7 @@
                         addedNode.addEventListener("click", () => {
                             console.log("click")
                             if(addedNode.classList.contains("ingredient")){
-                                this.ingredients = this.ingredients.filter(ingredient => ingredient !== addedNode.innerHTML);
+                                this.ingredients = this.ingredients.filter(ingredient => ingredient.toLowerCase() !== addedNode.innerHTML.toLowerCase());
                             }else if(addedNode.classList.contains("ustensil")) {
                                 this.ustensil = "";
                             }else if(addedNode.classList.contains("appliance")){
@@ -139,4 +139,4 @@
 }
 
 // Import the search function
-import {search} from "../../search.js"
+import {search} from "../../searchB.js"

@@ -9,6 +9,9 @@
 import data from "./assets/data/data.json"
 // store last results
 let lastSearch = [];
+export function getLastSearch() {
+    return lastSearch;
+}
 
 /**
  * Take an user request, return a list of corresponding recipes
@@ -28,10 +31,6 @@ export function search(request, appliance, ustensil, ingredients) {
     lastSearch = [appliance, ustensil, ingredients, recipes];
     console.timeEnd("search");
     return recipes;
-}
-
-export function getLastSearch() {
-    return lastSearch;
 }
 
 /**
