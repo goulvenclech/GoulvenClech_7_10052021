@@ -23,7 +23,6 @@
 
     render() {
         this.lastSearch = getLastSearch();
-        console.log(this.lastSearch)
         this.querySelector("div").innerHTML = "";
         if(this.lastSearch[2]) {
             let ingredients = this.lastSearch[2];
@@ -89,4 +88,4 @@
 }
 
 // Import the search function
-import {getLastSearch} from "../../searchB.js"
+import {getLastSearch} from "../../search.js"

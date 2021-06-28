@@ -1,5 +1,10 @@
 /**
  * A select menu for recipes using a specific appliance
+ * 
+ * WARNING
+ * Lot of code here is duplicated with the other select
+ * menu. For the future, it'll be better to make a <select>
+ * coponent parent, and different child version. 
  */
  export class ApplianceSelect extends HTMLElement {
     constructor() {

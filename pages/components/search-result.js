@@ -1,5 +1,9 @@
 /**
  * An imput used for making a new search then display the results
+ * 
+ * WARNING
+ * This component contain a huge amount of logic needed for the
+ * front end. [NEED MORE DOCUMENTATION HERE] 
  */
  export class SearchResult extends HTMLElement {
     constructor() {
@@ -26,11 +30,14 @@
         this.observer();
     }
 
+    /**
+     * Create a card for each recipe in results
+     */
     render() {
         this.results.forEach(recipe => {
             this.querySelector("section").insertAdjacentHTML('afterBegin', `
             <article class="bg-gray-300 overflow-hidden overflow-ellipsis
-                        rounded-md">
+                        rounded-md" tabindex="0">
                 <div class="h-40 overflow-hidden">
                     <img src="` + placeholder + `"
                         class="object-cover">
@@ -55,6 +62,9 @@
                 </div>
             </article>
             `)
+            /**
+             * Insert every ingredients in the recipe card
+             */
             recipe.ingredients.forEach(ingredient => this.querySelector(".ingredients").insertAdjacentHTML("beforeend",
                 `<li><span class="font-bold">` 
                     + ingredient.ingredient + 
@@ -123,13 +133,16 @@
         })
     }
 
+    /**
+     * mutation observer, to survey if the user delete a params in <search-params>
+     */
     observer() {
         let observer = new MutationObserver(mutations => {
             mutations.forEach(mutation => {
                 mutation.addedNodes.forEach(addedNode => {
                     if(addedNode.tagName == "SPAN") {
                         addedNode.addEventListener("click", () => {
-                            console.log("click")
+                            // Delete the params and make a new search
                             if(addedNode.classList.contains("ingredient")){
                                 this.ingredients = this.ingredients.filter(ingredient => ingredient.toLowerCase() !== addedNode.innerHTML.toLowerCase());
                             }else if(addedNode.classList.contains("ustensil")) {
@@ -137,8 +150,9 @@
                             }else if(addedNode.classList.contains("appliance")){
                                 this.appliance = "";
                             }
-                            addedNode.remove();
                             this.querySearch();
+                            // Remove the param on the <search-params>
+                            addedNode.remove();
                         })
                     }
                 })
@@ -161,6 +175,6 @@
 
 
 // Import the search function
-import {search} from "../../searchB.js"
+import {search} from "../../search.js"
 // Import the placeholder image
 import placeholder from "../../assets/placeholder.jpg"

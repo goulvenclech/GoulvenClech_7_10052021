@@ -59,7 +59,6 @@ function pretreatData(rawData) {
     console.timeEnd("search");
     //save the result
     lastSearch = [appliance, ustensil, ingredients, result];
-    console.log(result)
     return result;
 }
 

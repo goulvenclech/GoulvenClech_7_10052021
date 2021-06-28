@@ -68,6 +68,14 @@ Le projet Les Petits Plats est une projet d'application web entièrement dévelo
 
 ![](./algB.drawio.png)
 
+### Performance
+
+| requete                    | A    | B    |
+|----------------------------|------|------|
+| "Poir"                     | 0.17 | 0.30 |
+| "", [ "bananes","ananas" ] | 0.27 | 0.13 |
+| "trop",  [ "ananas" ]      | 0.50 | 0.16 |
+
 ## License 
 
 Il s'agit d'un projet dans le cadre de la formation [Développeur Front-End](https://openclassrooms.com/fr/paths/314-developpeur-front-end) d'OpenClassrooms. Le code est librement réutilisable, mais les images / logo et tout les éléments issus de l'énoncé ne m'appartiennent pas.
