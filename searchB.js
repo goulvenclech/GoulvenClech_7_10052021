@@ -1,7 +1,13 @@
 /**
  * SEARCH ALGORITHM 2
  * Here is all the logic to process a user request and return a list of corresponding recipes
- * WORK IN PROGRESS
+ * 
+ * In this algorithm, the data pretreatment makes the readability and maintainability much better:
+ * -> in the event of a change in the DB structure, only the pretreatment needs to be changed
+ * -> the functions are shorter and more readable
+ *
+ * I also used a filter() method rather than for loops, which makes the code a lot more logical. 
+ * The only flaw is the fact that the pretreatment must be canceled before returning the results.
  */
 
 // Import database with all the recipes
