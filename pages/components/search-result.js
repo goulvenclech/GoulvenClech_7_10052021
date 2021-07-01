@@ -175,6 +175,6 @@
 
 
 // Import the search function
-import {search} from "../../search.js"
+import {search} from "../../searchB.js"
 // Import the placeholder image
 import placeholder from "../../assets/placeholder.jpg"
